@@ -1,0 +1,57 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+body{
+    height: 100vh;
+    background-color: #000a19;
+    color: #fff;
+    font-family: 'Roboto', sans-serif;
+}
+
+
+
+@media (min-width: 576px) { 
+  .container{
+      margin: 0 auto;
+  }
+}
+
+
+@media (min-width: 768px) { 
+  body{
+    position: relative;
+    background: linear-gradient(rgba(22, 28, 45, 0.75), rgba(22, 28, 45, 0.75)),
+		url(../src/assets/xd/daylight.jpg);
+    background-size: cover;
+    height: 100vh;
+  }
+  .container{
+    min-width: 700px;
+    max-width: 750px;
+  }
+  .smallTest{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: 1px solid black;
+    border-radius: 20px;
+    height: 750px;
+  }
+}
+
+
+@media (min-width: 992px) {
+  .container{
+    min-width: 980px;
+  }
+ }
+
+
+ @media (min-width: 1360px) { 
+
+}
+
+
