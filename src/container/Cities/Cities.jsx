@@ -11,13 +11,25 @@ import {
 } from 'react-icons/fa';
 
 import { useStateContext } from '../../contexts/ContextProvider';
-
 const Cities = () => {
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 	const { inputList, setInputList } = useStateContext();
 
 	const { currentCity, setCurrentCity } = useStateContext();
-	// console.log(currentCity);
-	// console.log(currentCity ? true : false)
+
 
 	const { lat, setLat } = useStateContext();
 	const { lon, setLon } = useStateContext();
