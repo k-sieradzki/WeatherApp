@@ -1,9 +1,9 @@
 import React, {useState, useEffect} from 'react';
 
-import { MainPage, CitiesPage, MoreDaysPage, WrongRoute, Loading } from './pages';
+
+import { MainPage, CitiesPage, MoreDaysPage } from './pages';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-
-
+import { WrongRoute } from './container';
 
 import { useStateContext } from './contexts/ContextProvider';
 

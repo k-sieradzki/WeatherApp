@@ -33,28 +33,6 @@ nav .container .navbar .cityLocation .icon {
   font-size: 0.8em;
 }
 
-nav .container .navbar .update {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: absolute;
-  padding: 3px 10px;
-  left: 50%;
-  transform: translateX(-50%);
-  bottom: 5px;
-  font-size: 10px;
-  border: 1px solid #dedede69;
-  border-radius: 20px;
-}
-
-nav .container .navbar .update .dot {
-  width: 5px;
-  height: 5px;
-  margin-right: 5px;
-  border-radius: 50%;
-  background-color: limegreen;
-}
-
 nav .container .navbar .settings {
   position: relative;
   color: #fff;

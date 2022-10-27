@@ -51,6 +51,7 @@ a:-webkit-any-link {
 
 .cities .container .citiesList .searchForCity .searchIcon {
   font-size: 25px;
+  cursor: pointer;
 }
 
 .cities .container .citiesList .searchForCity input {
@@ -92,10 +93,10 @@ a:-webkit-any-link {
 }
 
 .cities .container .citiesList .citiesBox .box .city .cityName {
-  background-color: red;
   padding: 30px 10px;
   border-radius: 10px;
   width: 100%;
+  color: #000a19;
 }
 
 .cities .container .citiesList .citiesBox .box .city .cityTemp {
@@ -108,4 +109,5 @@ a:-webkit-any-link {
   display: block;
   padding: 10px;
   margin-left: 10px;
+  cursor: pointer;
 }

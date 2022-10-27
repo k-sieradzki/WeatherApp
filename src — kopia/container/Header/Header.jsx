@@ -10,8 +10,7 @@ import { useStateContext } from '../../contexts/ContextProvider';
 
 import './Header.css';
 const Header = ({data}) => {
-	const {metorimp, setMetorimp} = useStateContext();
-
+	
 	let time = new Date()
 	const daysArr = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 	const monthArr = ["January", "February", "March", "April", "May", "June",
@@ -42,7 +41,7 @@ const Header = ({data}) => {
 								<div className='icon'>
 									<TbWind />
 								</div>
-								<div className='data'>{Math.round(data.wind.speed)} {metorimp === 'metric' ? 'Kmh' : 'Mph'}</div>
+								<div className='data'>{Math.round(data.wind.speed)} km/h</div>
 								<div className='name'>Wind</div>
 							</div>
 

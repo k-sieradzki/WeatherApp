@@ -12,36 +12,13 @@ import {
 
 import { useStateContext } from '../../contexts/ContextProvider';
 
-
-
 const Cities = () => {
 	const { inputList, setInputList } = useStateContext();
 	const { currentCity, setCurrentCity } = useStateContext();
 
 
-	
 
-
-	useEffect(() => {
-		const addCity = event => {
-		  if (event.keyCode === 13) {
-			event.preventDefault();
-			handleAddInput()
-		  }
-		};
-		document.addEventListener("keydown", addCity);
-		return () => {
-		  document.removeEventListener("keydown", addCity);
-		};
-	  }, []);
-
-
-
-
-
-
-
-	////////////////Create new element in list///////////////////////////////////////
+////////////////Create new element in list///////////////////////////////////////
 	useEffect(() => {
 		let citiesBox = document.querySelector('.citiesBox');
 		const checkClick = e => {
@@ -54,23 +31,18 @@ const Cities = () => {
 			citiesBox.removeEventListener('click', checkClick);
 		};
 	});
-
 	const handleAddInput = () => {
 		let cityInput = document.querySelector('.citySearch');
-		if(cityInput.value !== ''){
-			setInputList([...inputList, cityInput.value]);
-		setCurrentCity(cityInput.value);
+		setInputList([...inputList, cityInput.value]);
+		setCurrentCity(cityInput.value)
 		cityInput.value = '';
-		}else{
-			return;
-		}
 	};
 	const handleRemoveInput = index => {
 		const list = [...inputList];
 		list.splice(index, 1);
 		setInputList(list);
 	};
-	////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
 	return (
 		<div className='cities'>
 			<div className='container'>
@@ -100,9 +72,10 @@ const Cities = () => {
 						{inputList.map((key, index) => {
 							return (
 								<div className='box' key={index}>
-									<Link to={'/'} className='link'>
+									<Link to={'/'} className='link' >
 										<div className='city'>
 											<div className='cityName'>{inputList[index]}</div>
+											<div className='cityTemp'>15°</div>
 										</div>
 									</Link>
 									<div className='trashbin'>

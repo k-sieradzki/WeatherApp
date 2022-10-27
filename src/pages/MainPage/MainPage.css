@@ -1,0 +1,7 @@
+@media (min-width: 768px) {
+  .mainPage {
+    border-radius: 20px;
+    width: 750px;
+    border: none;
+  }
+}

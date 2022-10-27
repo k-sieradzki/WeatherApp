@@ -3,13 +3,12 @@ import { Link } from 'react-router-dom';
 import { HiOutlineDotsVertical } from 'react-icons/hi';
 import { AiOutlinePlusCircle } from 'react-icons/ai';
 
+import { ImLocation } from 'react-icons/im';
 import { MdLocationPin } from 'react-icons/md';
 
 import { useStateContext } from '../../contexts/ContextProvider';
 
-
-
-
+import images from '../../assets/images';
 
 import './Navbar.css';
 const Navbar = ({data}) => {
@@ -20,17 +19,6 @@ const Navbar = ({data}) => {
 
 
 	const {currentCity, setCurrentCity} = useStateContext();
-	const {metorimp, setMetorimp} = useStateContext();
-
-
-
-	function changeFunc(){
-		let unit = document.querySelector('.unitChange')
-		let unitValue = unit 
-		setMetorimp(unitValue.options[unit.selectedIndex].value)
-	}
-	
-
 
 
 	return (
@@ -45,7 +33,11 @@ const Navbar = ({data}) => {
 
 					<div className='cityLocation'>
 						<MdLocationPin className='icon' />{' '}
-						{data.name !== '' ? <div className='city'>{data.name}</div> : <div className='city'>{currentCity}</div>}
+						<div className='city'>{currentCity}</div>
+					</div>
+					<div className='update'>
+						{' '}
+						<div className='dot'></div>Updating
 					</div>
 					<div className='settings'>
 						<button
@@ -61,14 +53,24 @@ const Navbar = ({data}) => {
 							<div className='settings-list'>
 							<ul>
 								<li>
-									<p>Units</p>
-									<select defaultValue={metorimp} className='unitChange' name='' id='' onChange={() => changeFunc()}>
-										<option value='metric'>Metrical</option>
-										<option value='imperial'>Imperial</option>
+									<p>Temperature units</p>
+									<select name='' id=''>
+										<option value=''>°C</option>
+										<option value=''>°F</option>
+									</select>
+								</li>
+								<li>
+									<p>Wind speed units</p>
+									<select name='' id=''>
+										<option value=''>(km/h)</option>
+										<option value=''>(m/s)</option>
+										<option value=''>(mph)</option>
+										<option value=''>(kn)</option>
 									</select>
 								</li>
 								<div className='save-or-cancel'>
-									<button className='save' onClick={() => {toggleSettings()}}>OK</button>
+									<button className='save'>Save</button>
+									<button className='canel'>Cancel</button>
 								</div>
 							</ul>
 						</div>

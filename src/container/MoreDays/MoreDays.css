@@ -62,7 +62,7 @@
 
 .more-days .container .days-list .days-box .day .temperature span {
   font-size: 12px;
-  color: gray;
+  color: #6da7f9;
 }
 
 @media (min-width: 768px) {

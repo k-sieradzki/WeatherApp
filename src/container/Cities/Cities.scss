@@ -44,6 +44,7 @@ a:-webkit-any-link {
                 }
                 .searchIcon{
                     font-size: 25px;
+                    cursor: pointer;
                     
                 }
                 input{
@@ -81,10 +82,10 @@ a:-webkit-any-link {
                         background-color: lightskyblue;
                         
                         .cityName{
-                            background-color: red;
                             padding: 30px 10px;
                             border-radius: 10px;
                             width: 100%;
+                            color: #000a19;
                         }
                         .cityTemp{
                             position: absolute;
@@ -96,6 +97,7 @@ a:-webkit-any-link {
                         display: block;
                         padding: 10px;
                         margin-left: 10px;
+                        cursor: pointer;
                     }
                 }
             }

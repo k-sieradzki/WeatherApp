@@ -53,6 +53,9 @@ header{
 					 justify-content: space-between;
 					.item{
 						text-align: center;
+						.icon {
+							color: #71b4fa;
+						}
 						.data{
 							font-size: 14px;
 						}

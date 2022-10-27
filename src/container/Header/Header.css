@@ -65,6 +65,10 @@ header .container .weather .add-info .item-box .item {
   text-align: center;
 }
 
+header .container .weather .add-info .item-box .item .icon {
+  color: #71b4fa;
+}
+
 header .container .weather .add-info .item-box .item .data {
   font-size: 14px;
 }

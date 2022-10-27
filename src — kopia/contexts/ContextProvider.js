@@ -7,14 +7,14 @@ export const ContextProvider = ({ children }) => {
   const [inputList, setInputList] = useState([]);
   const [currentCity, setCurrentCity] = useState(null);
 
+  const [isLoading, setIsLoading] = useState(true)
 
-  const [metorimp, setMetorimp] = useState('metric')
 
 
 
 
   return (
-    <StateContext.Provider value={{ currentCity, setCurrentCity, inputList, setInputList, metorimp, setMetorimp}}>
+    <StateContext.Provider value={{ currentCity, setCurrentCity, inputList, setInputList, isLoading, setIsLoading,}}>
       {children}
     </StateContext.Provider>
   );
