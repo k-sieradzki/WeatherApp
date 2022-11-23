@@ -1,18 +1,18 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { GiBackwardTime } from 'react-icons/gi';
-import { useStateContext } from '../../contexts/ContextProvider';
 
-import './WrongRoute.css'
+import styles from './WrongRoute.module.scss'
+
 const WrongRoute = () => {
 	return (
 		<>
-			<div className='wrongRoute'>
-				<div className='container'>
-					<span className='error'>404</span>
-					<p className='erorInfo'>This page doesn't exist.</p>
-					<Link to={'/'} className='link'>
-						<GiBackwardTime className='backBtn'/>
+			<div className={styles.wrongRoute}>
+				<div className={styles.container}>
+					<span className={styles.error}>404</span>
+					<p className={styles.erorInfo}>This page doesn't exist.</p>
+					<Link to={'/'} className={styles.link}>
+						<GiBackwardTime className={styles.backBtn}/>
 					</Link>
 				</div>
 			</div>

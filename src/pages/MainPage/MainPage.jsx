@@ -1,29 +1,19 @@
 import React, {useEffect, useState} from 'react';
+import { useSelector } from 'react-redux';
 import { Navbar, Header, Hourly} from '../../container';
-
-import { useStateContext } from '../../contexts/ContextProvider';
 import {weatherUrl, weatherKey, geoKey, geoUrl} from '../../api'
-
-import { Loading, WrongRoute } from '../../pages';
-
+import { Loading} from '../../pages';
 import { useNavigate } from 'react-router-dom';
-
-
-
-
+import styles from './MainPage.module.scss'
 
 const MainPage = () => {
-	const { currentCity, setCurrentCity } = useStateContext();
-
 	const [currentWeather, setCurrentWeather] = useState();
 	const [forecast, setForecast] = useState();
-
 	const [isLoading, setIsLoading] = useState(true);
 
 	const navigate = useNavigate();
-	const {metorimp, setMetorimp} = useStateContext();
 	
-
+	const currentCity = useSelector(state => state.currentCity)
 	let lat = ''
 	let lon = ''
 
@@ -35,45 +25,32 @@ const MainPage = () => {
 				lon = response.results[0].geometry.lng
 			})
 			.catch((err) => navigate('/cities'))
-			console.log('lat', lat, "+", 'lon', lon);
 			getCityData()
 	}
 
 
 	const getCityData = () => {
-	  const currentWeatherFetch = fetch(`${weatherUrl}/weather?lat=${lat}&lon=${lon}&appid=${weatherKey}&units=${metorimp}`)
-	  const forecastFetch = fetch(`${weatherUrl}/forecast?lat=${lat}&lon=${lon}&appid=${weatherKey}&units=${metorimp}`)
+	  const currentWeatherFetch = fetch(`${weatherUrl}/weather?lat=${lat}&lon=${lon}&appid=${weatherKey}&units=metric`)
+	  const forecastFetch = fetch(`${weatherUrl}/forecast?lat=${lat}&lon=${lon}&appid=${weatherKey}&units=metric`)
   
 	  Promise.all([currentWeatherFetch, forecastFetch])
 		.then(async (response) => {
 		  const weatherResponse = await response[0].json()
 		  const forecastResponse = await response[1].json()
-  
 		  setCurrentWeather({...weatherResponse});
 		  setForecast({...forecastResponse})
-		  console.log('pobrano z fetcha')
-
 		})
-		.catch((err) => console.log('i dupa'))
+		.catch((err) => console.log(err))
 		setIsLoading(false)
 	}
 
 	useEffect(() => {
 		searchForCity()
-		
 	}, []);
 
-	useEffect(() => {
-		searchForCity()
-	}, [metorimp]);
-
-
-
-
-
 	return (
-		<div className='mainPage'>
-			<div className="container">
+		<div className={styles.mainPage}>
+			<div className={styles.container}>
 			{isLoading ? 
 			<Loading />
 			: 
@@ -84,14 +61,7 @@ const MainPage = () => {
 			</>
 			}
 			</div>
-
-
-
-			
-			
 		</div>
-
-
 	);
 };
 

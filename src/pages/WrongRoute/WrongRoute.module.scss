@@ -1,0 +1,54 @@
+.wrongRoute{
+    a:-webkit-any-link {
+        text-decoration: none;
+        color: inherit;
+      }
+      
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #d4d4d4;
+    color: #111;
+}
+
+.container{
+    text-align: center;
+    margin: 0 20px;
+}
+.error{
+    font-size: 150px;
+}
+.erorInfo{
+    font-size: 30px;
+    padding-bottom: 30px;
+}
+.link{
+    font-size: 50px;
+    .backBtn{
+        width: 100%;
+    }
+}
+
+  @media (min-width: 768px) {
+    .wrongRoute{
+        max-height: 750px;
+        border-radius: 20px;
+    }
+    .container {
+        margin: 0 auto;
+        min-width: 700px;
+        max-width: 750px;
+    }
+    .day {
+        margin: 15px 0;
+        font-size: 1.2em;
+    }
+}
+
+@media (min-width: 992px) {
+.container{
+  min-width: 980px;
+}
+}
+

@@ -1,77 +1,88 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { Link } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
 import { HiOutlineDotsVertical } from 'react-icons/hi';
 import { AiOutlinePlusCircle } from 'react-icons/ai';
-
 import { MdLocationPin } from 'react-icons/md';
 
-import { useStateContext } from '../../contexts/ContextProvider';
+import { units } from '../../redux/actions';
+import styles from './Navbar.module.scss';
 
 
+const Navbar = ({ data }) => {
+	const dispatch = useDispatch();
 
-
-
-import './Navbar.css';
-const Navbar = ({data}) => {
 	const [showSettings, setShowSettings] = useState(false);
 	const toggleSettings = () => {
-		setShowSettings(state => !state)
-	}
+		setShowSettings(state => !state);
+	};
 
+	const unit = useSelector(state => state.units);
+	const unitChanges = useRef(null);
+	const currentCity = useSelector(state => state.currentCity);
 
-	const {currentCity, setCurrentCity} = useStateContext();
-	const {metorimp, setMetorimp} = useStateContext();
-
-
-
-	function changeFunc(){
-		let unit = document.querySelector('.unitChange')
-		let unitValue = unit 
-		setMetorimp(unitValue.options[unit.selectedIndex].value)
-	}
-	
-
-
+	const changeFunc = () => {
+		let unit = unitChanges.current;
+		let unitValue = unit;
+		let currentValue = unitValue.options[unit.selectedIndex].value;
+		dispatch(units(currentValue));
+	};
 
 	return (
 		<nav>
-			<div className='container'>
-				<div className='navbar'>
-					<div className='citiesList'>
-						<Link to={'/cities'} className='cities'>
+			<div className={styles.container}>
+				<div className={styles.navbar}>
+					<div className={styles.citiesList}>
+						<Link to={'/cities'} className={styles.cities}>
 							<AiOutlinePlusCircle />
 						</Link>
 					</div>
 
-					<div className='cityLocation'>
-						<MdLocationPin className='icon' />{' '}
-						{data.name !== '' ? <div className='city'>{data.name}</div> : <div className='city'>{currentCity}</div>}
+					<div className={styles.cityLocation}>
+						<MdLocationPin className={styles.icon} />{' '}
+						{data.name !== '' ? (
+							<div className={styles.city}>{data.name}</div>
+						) : (
+							<div className={styles.city}>{currentCity}</div>
+						)}
 					</div>
-					<div className='settings'>
+					<div className={styles.settings}>
 						<button
-							className='settings-btn'
+							className={styles.settingsBtn}
 							onClick={() => {
-								toggleSettings()
+								toggleSettings();
 							}}
 						>
 							<HiOutlineDotsVertical />
 						</button>
 
 						{showSettings && (
-							<div className='settings-list'>
-							<ul>
-								<li>
-									<p>Units</p>
-									<select defaultValue={metorimp} className='unitChange' name='' id='' onChange={() => changeFunc()}>
-										<option value='metric'>Metrical</option>
-										<option value='imperial'>Imperial</option>
-									</select>
-								</li>
-								<div className='save-or-cancel'>
-									<button className='save' onClick={() => {toggleSettings()}}>OK</button>
-								</div>
-							</ul>
-						</div>
+							<div className={styles.settingsList}>
+								<ul>
+									<li>
+										<p>Units</p>
+										<select
+											ref={unitChanges}
+											defaultValue={unit}
+											className={styles.unitChange}
+											onChange={() => changeFunc()}
+										>
+											<option value='metric'>Metrical</option>
+											<option value='imperial'>Imperial</option>
+										</select>
+									</li>
+									<div className={styles.saveOrCancel}>
+										<button
+											className={styles.save}
+											onClick={() => {
+												toggleSettings();
+											}}
+										>
+											OK
+										</button>
+									</div>
+								</ul>
+							</div>
 						)}
 					</div>
 				</div>

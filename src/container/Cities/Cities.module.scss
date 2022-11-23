@@ -1,0 +1,132 @@
+
+.cities{
+    ::-webkit-scrollbar-thumb {
+        background: #FF0000;
+    }
+
+a:-webkit-any-link {
+    text-decoration: none;
+    color: inherit;
+  }
+  
+}
+
+.citiesList{
+    position: relative;
+    padding: 50px 5% 0 5%;
+    h2{
+        margin-bottom: 20px;
+    }
+}
+.arrow{
+    width: 100%;
+    font-size: 2em;
+    text-align: left;
+    color: #fff;
+
+}
+
+.searchForCity{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    input{
+        width: 100%;
+        padding: 10px 5px ;
+        margin: 0 10px;
+        border: none;
+        border-radius: 10px;
+    }
+    
+    button{
+        border: none;
+        color: #fff;
+        background-color: transparent;
+        height: 40px;
+        width: 40px;
+        line-height: 25px;
+    }
+}
+
+.searchIcon{
+    font-size: 25px;
+    cursor: pointer;
+}
+
+.searchBar{
+    color: #111;
+    width: 100%;
+    padding: 10px 5px ;
+    margin: 0 10px;
+    border: none;
+    border-radius: 10px;
+}
+
+.citiesBox{
+    width: 100%;
+    height: 500px;
+    margin-top: 30px;
+    overflow: scroll;
+}
+.box{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    
+}
+.link{
+    text-decoration: none;
+    width: 100%;
+}
+.city{
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 10px 0;
+    border-radius: 10px;
+    font-size: 1.2em;
+    background-color: lightskyblue;
+}
+
+.cityName{
+    padding: 30px 10px;
+    border-radius: 10px;
+    width: 100%;
+    color: #000a19;
+}
+
+.cityTemp{
+    position: absolute;
+    right: 0;
+    padding: 30px 10px;
+}
+.trashbin{
+    display: block;
+    padding: 10px;
+    margin-left: 10px;
+    cursor: pointer;
+}
+
+@media (min-width: 576px) { 
+    .container{
+        margin: 0 auto;
+    }
+  }
+  
+  
+  @media (min-width: 768px) { 
+    .container{
+      min-width: 700px;
+      max-width: 750px;
+    }
+  }
+  
+  
+  @media (min-width: 992px) {
+    .container{
+      min-width: 980px;
+    }
+   }

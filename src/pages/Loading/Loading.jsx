@@ -1,15 +1,14 @@
 import React from 'react';
+import styles from './Loading.module.scss'
 
-import './Loading.css'
 const Loading = () => {
 	return (
 		<>
-			<div className='loading'>
-				<div className='container'>
-					<p className='info'>Loading...
-					<div className="circle"></div>
-					</p>
-					
+			<div className={styles.loading}>
+				<div className={styles.container}>
+					<div className={styles.info}>Loading...
+					<div className={styles.circle}></div>
+					</div>
 				</div>
 			</div>
 		</>

@@ -1,31 +1,32 @@
-import React, {useEffect} from 'react';
-import { Swiper, SwiperSlide } from 'swiper/react';
+import React from 'react';
+import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-// Import Swiper styles
+import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/free-mode';
 import 'swiper/css/pagination';
 import { FreeMode, Pagination } from 'swiper';
 import { AiOutlineArrowRight } from 'react-icons/ai';
-import './Hourly.css';
-import { useStateContext } from '../../contexts/ContextProvider';
+import styles from './Hourly.module.scss'
 
 
 const Hourly = ({data}) => {
+	const units = useSelector(state => state.units)
+
 	return (
-		<div className='hourly'>
-			<div className='container'>
-				<div className='top-text'>
+		<div className={styles.hourly}>
+			<div className={styles.container}>
+				<div className={styles.topText}>
 					<h2>+24h</h2>
 					<h5>
-						<Link to={'/moredays'} state={data} className='moreLink'>
+						<Link to={'/moredays'} state={data} className={styles.moreLink}>
 							5 days
-							<AiOutlineArrowRight className='arrow-right' />
+							<AiOutlineArrowRight className={styles.arrowRight} />
 						</Link>
 					</h5>
 				</div>
-				<div className='hourly-wather'>
-					<div className='hour-box'>
+				<div className={styles.hourlyWather}>
+					<div className={styles.hourBox}>
 						<>
 							<Swiper
 								slidesPerView={4}
@@ -35,7 +36,7 @@ const Hourly = ({data}) => {
 									clickable: true,
 								}}
 								modules={[FreeMode, Pagination]}
-								className='mySwiper'
+								className={styles.mySwiper}
 								breakpoints={{
 									576: {
 										slidesPerView: 5,
@@ -54,17 +55,17 @@ const Hourly = ({data}) => {
 
 								{data.list.slice(0, 10).map((item, index) => (
 									<SwiperSlide key={index}>
-										<div className='box'>
-											<div className='temperature'>
-												<p>{Math.round(data.list[index].main.temp)}°</p>
+										<div className={styles.box}>
+											<div className={styles.temperature}>
+												<p>{units === 'metric' ? <>{Math.round(data.list[index].main.temp)}</> : <>{Math.round((data.list[index].main.temp * 1.8) + 32)}</>}°</p>
 											</div>
-											<div className='weather-icon'>
+											<div className={styles.weatherIcon}>
 												<img
 													src={`icons/${data.list[index].weather[0].icon}.png`}
 													alt=''
 												/>
 											</div>
-											<div className='time'>
+											<div className={styles.time}>
 												<p>{data.list[index].dt_txt.slice(-8, -3)}</p>
 											</div>
 										</div>

@@ -1,52 +1,41 @@
-import React, { useEffect, useState } from 'react';
-
+import React, { useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
-import { options, geoUrl, geoKey } from '../../api';
-import './Cities.css';
+import { useSelector, useDispatch } from 'react-redux';
 import {
 	FaLongArrowAltLeft,
 	FaSearchLocation,
 	FaTrashAlt,
-	FaPlus,
 } from 'react-icons/fa';
-
-import { useStateContext } from '../../contexts/ContextProvider';
-
+import { addCity, removeCity, currentCity } from '../../redux/actions';
+import styles from './Cities.module.scss';
 
 
 const Cities = () => {
-	const { inputList, setInputList } = useStateContext();
-	const { currentCity, setCurrentCity } = useStateContext();
+	const dispatch = useDispatch();
+	const citiesBoxRef = useRef(null);
+	const citiSearchRef = useRef(null);
+	const citiesList = useSelector(state => state.citiesList);
 
-
-	
-
-
+	//////////////////Enter check//////////////////////////////
 	useEffect(() => {
 		const addCity = event => {
-		  if (event.keyCode === 13) {
-			event.preventDefault();
-			handleAddInput()
-		  }
+			if (event.keyCode === 13) {
+				event.preventDefault();
+				handleAddInput();
+			}
 		};
-		document.addEventListener("keydown", addCity);
+		document.addEventListener('keydown', addCity);
 		return () => {
-		  document.removeEventListener("keydown", addCity);
+			document.removeEventListener('keydown', addCity);
 		};
-	  }, []);
+	});
 
-
-
-
-
-
-
-	////////////////Create new element in list///////////////////////////////////////
+	////////////////Create and remove element in list///////////////////////////////////////
 	useEffect(() => {
-		let citiesBox = document.querySelector('.citiesBox');
+		let citiesBox = citiesBoxRef.current;
 		const checkClick = e => {
-			if (e.target.closest('div').classList.contains('cityName')) {
-				setCurrentCity(e.target.closest('div').innerText);
+			if (e.target.closest('div').classList.contains(`${styles.cityName}`)) {
+				dispatch(currentCity(e.target.closest('div').innerText));
 			}
 		};
 		citiesBox.addEventListener('click', checkClick);
@@ -56,38 +45,40 @@ const Cities = () => {
 	});
 
 	const handleAddInput = () => {
-		let cityInput = document.querySelector('.citySearch');
-		if(cityInput.value !== ''){
-			setInputList([...inputList, cityInput.value]);
-		setCurrentCity(cityInput.value);
-		cityInput.value = '';
-		}else{
+		let cityInput = citiSearchRef.current;
+		if (cityInput.value !== '') {
+			dispatch(currentCity(cityInput.value));
+			dispatch(addCity(cityInput.value));
+			cityInput.value = '';
+		} else {
 			return;
 		}
 	};
+
 	const handleRemoveInput = index => {
-		const list = [...inputList];
+		const list = [...citiesList];
 		list.splice(index, 1);
-		setInputList(list);
+		dispatch(removeCity(list));
 	};
 	////////////////////////////////////////////////////////////////////////////////
 	return (
-		<div className='cities'>
-			<div className='container'>
-				<div className='citiesList'>
-					<Link to={'/'} className='arrow'>
+		<div className={styles.cities}>
+			<div className={styles.container}>
+				<div className={styles.citiesList}>
+					<Link to={'/'} className={styles.arrow}>
 						<FaLongArrowAltLeft />
 					</Link>
 					<h2>Manage cities</h2>
-
-					<div className='searchForCity'>
+					<div className={styles.searchForCity}>
 						<input
-							className='citySearch'
+							ref={citiSearchRef}
+							className={styles.citySearch}
 							type='text'
-							placeholder='Enter location'
+							placeholder='Example: London'
 						/>
+
 						<button
-							className='searchIcon'
+							className={styles.searchIcon}
 							onClick={() => {
 								handleAddInput();
 							}}
@@ -96,16 +87,19 @@ const Cities = () => {
 						</button>
 					</div>
 
-					<div className='citiesBox'>
-						{inputList.map((key, index) => {
+					<div ref={citiesBoxRef} className={styles.citiesBox}>
+						{citiesList.map((key, index) => {
 							return (
-								<div className='box' key={index}>
-									<Link to={'/'} className='link'>
-										<div className='city'>
-											<div className='cityName'>{inputList[index]}</div>
+								<div className={styles.box} key={index}>
+									<Link to={'/'} className={styles.link}>
+										<div className={styles.city}>
+											<div className={styles.cityName}>
+												{citiesList[index].charAt(0).toUpperCase() +
+													citiesList[index].slice(1)}
+											</div>
 										</div>
 									</Link>
-									<div className='trashbin'>
+									<div className={styles.trashbin}>
 										<FaTrashAlt onClick={() => handleRemoveInput(index)} />
 									</div>
 								</div>

@@ -1,0 +1,44 @@
+::-webkit-scrollbar {
+	width: 0px;
+	height: 0;
+}
+::-webkit-scrollbar {
+    width: 0; 
+    background: transparent;
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+body{
+    height: 100vh;
+    background-color: #000a19;
+    color: #fff;
+    font-family: 'Roboto', sans-serif;
+}
+
+
+
+@media (min-width: 768px) { 
+  body{
+    position: relative;
+    background: linear-gradient(rgba(22, 28, 45, 0.75), rgba(22, 28, 45, 0.75)),
+		url(../src/assets/bgWallpaper/world.jpg);
+    background-color: #000a19;
+    background-size: cover;
+  }
+  .center{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    width: 100%;
+  }
+  .centerInside{
+    overflow: auto;
+  }
+}
+
