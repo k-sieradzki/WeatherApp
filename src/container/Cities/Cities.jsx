@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import {
@@ -13,8 +13,8 @@ import styles from './Cities.module.scss';
 const Cities = () => {
 	const dispatch = useDispatch();
 	const citiesBoxRef = useRef(null);
-	const citiSearchRef = useRef(null);
 	const citiesList = useSelector(state => state.citiesList);
+	const [citiSearch, setCitiSearch] = useState('');
 
 	//////////////////Enter check//////////////////////////////
 	useEffect(() => {
@@ -44,16 +44,16 @@ const Cities = () => {
 		};
 	});
 
+
 	const handleAddInput = () => {
-		let cityInput = citiSearchRef.current;
-		if (cityInput.value !== '') {
-			dispatch(currentCity(cityInput.value));
-			dispatch(addCity(cityInput.value));
-			cityInput.value = '';
-		} else {
-			return;
+		if(citiSearch !== ''){
+			dispatch(currentCity(citiSearch));
+	 		dispatch(addCity(citiSearch));
+			setCitiSearch('')
+		}else{
+			return
 		}
-	};
+	}
 
 	const handleRemoveInput = index => {
 		const list = [...citiesList];
@@ -71,8 +71,9 @@ const Cities = () => {
 					<h2>Manage cities</h2>
 					<div className={styles.searchForCity}>
 						<input
-							ref={citiSearchRef}
+							onChange={(e) => {setCitiSearch(e.target.value)}}
 							className={styles.citySearch}
+							value={citiSearch}
 							type='text'
 							placeholder='Example: London'
 						/>
@@ -99,8 +100,8 @@ const Cities = () => {
 											</div>
 										</div>
 									</Link>
-									<div className={styles.trashbin}>
-										<FaTrashAlt onClick={() => handleRemoveInput(index)} />
+									<div className={styles.trashbin} onClick={() => handleRemoveInput(index)}>
+										<FaTrashAlt/>
 									</div>
 								</div>
 							);
