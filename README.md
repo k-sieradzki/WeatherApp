@@ -35,6 +35,7 @@ Live: https://gentle-capybara-304ce8.netlify.app/
 - React-Router: Is used for implementing routing in React applications.
 - Redux: State management library for React applications.
 - SCSS Modules: For styling components 
+- localStorage: To store data locally in the user's browser
 
 
 ![WeatherApp](https://i.imgur.com/ErnUNHD.png)
